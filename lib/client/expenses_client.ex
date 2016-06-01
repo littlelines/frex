@@ -7,7 +7,9 @@ defmodule Frex.Client.Expenses do
   Sends a get request to the Freshbooks API expenses endpoint.
   """
 
-  def get(request = %{expense_id: expense_id}) do
-    Frex.Request.build("expense.get", request)
+  def get(expense_id) do
+    Frex.Request.build("expense.get", [{:expense_id, %{}, expense_id}])
+    # TODO: Implement the send function.
+    # |> Frex.HTTP.send
   end
 end
