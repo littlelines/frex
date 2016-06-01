@@ -28,7 +28,8 @@ defmodule Frex.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:quinn, github: "jesseherrick/quinn"}
+      {:quinn, github: "jesseherrick/quinn"},
+      {:xml_builder, "~> 0.0.8"}
     ]
   end
 end

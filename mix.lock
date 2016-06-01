@@ -1,3 +1,4 @@
 %{"erlsom": {:hex, :erlsom, "1.4.1", "53dbacf35adfea6f0714fd0e4a7b0720d495e88c5e24e12c5dc88c7b62bd3e49", [:rebar3], []},
   "exmerl": {:hex, :exmerl, "0.1.1", "9c9f426b947f483c4e09fa1557b0cb9ac8979d6776d5fc5b273feca0d0e6e7db", [:make, :mix], []},
-  "quinn": {:git, "https://github.com/jesseherrick/quinn.git", "522e3ff33115f977ef3f7f34d929716b6a60a9bf", []}}
+  "quinn": {:git, "https://github.com/jesseherrick/quinn.git", "522e3ff33115f977ef3f7f34d929716b6a60a9bf", []},
+  "xml_builder": {:hex, :xml_builder, "0.0.8", "dea10735e15c91e24582e41ee2d3282b7f0177a5b42d6268096a6221ba83226f", [:mix], []}}
