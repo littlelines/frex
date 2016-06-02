@@ -22,15 +22,18 @@ defmodule Frex.Parser do
       %{attr: [_, status: "ok"]} ->
         %{value: [%{value: response_data}]} = initial_response
 
-        response_map =
-          if response_data |> Enum.at(0) |> Map.get(:value) |> length > 1 do
-            response_data |> clean_response_list |>
-            Enum.map(fn(item) -> put_attrs(item) end)
-          else
-            put_attrs(response_data) |> Map.put(:status, "ok")
-          end
-        {:ok, response_map}
+        {:ok, parse_response(response_data)}
     end
+  end
+
+  defp parse_response(response_data = [%{value: attrs} | _]) when length(attrs) > 1 do
+    response_data
+    |> clean_response_list
+    |> Enum.map(&put_attrs/1)
+  end
+
+  defp parse_response(response_data) do
+    put_attrs(response_data) |> Map.put(:status, "ok")
   end
 
   # Puts attributes from the Freshbooks API (`response`) response into a Map.
@@ -42,6 +45,7 @@ defmodule Frex.Parser do
     end)
   end
 
+  # Cleans up parsed XML with multiple attributes.
   defp clean_response_list(response_list) do
     Enum.map response_list, fn(item) ->
       %{value: value} = item
