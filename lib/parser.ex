@@ -12,17 +12,25 @@ defmodule Frex.Parser do
   """
   def parse(xml_string) do
     [initial_response] = Quinn.parse(xml_string)
-    %{attr: [_, status: status], name: :response, value: [%{value: response_data}]} = initial_response
 
-    response_map =
-      if response_data |> Enum.at(0) |> Map.get(:value) |> length > 1 do
-        response_data |> clean_response_list |>
-        Enum.map(fn(item) -> put_attrs(item) end)
-      else
-        put_attrs(response_data) |> Map.put(:status, status)
-      end
+    case initial_response do
+      %{attr: [_, status: "fail"]} ->
+        %{value: [%{name: :error, value: [error_message]}, %{name: :code, value: [error_code]}]} = initial_response
 
-    {:ok, response_map}
+        {:error,
+         %{status: "fail", message: error_message, code: error_code}}
+      %{attr: [_, status: "ok"]} ->
+        %{value: [%{value: response_data}]} = initial_response
+
+        response_map =
+          if response_data |> Enum.at(0) |> Map.get(:value) |> length > 1 do
+            response_data |> clean_response_list |>
+            Enum.map(fn(item) -> put_attrs(item) end)
+          else
+            put_attrs(response_data) |> Map.put(:status, "ok")
+          end
+        {:ok, response_map}
+    end
   end
 
   # Puts attributes from the Freshbooks API (`response`) response into a Map.

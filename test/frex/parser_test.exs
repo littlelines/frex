@@ -136,4 +136,21 @@ defmodule Frex.Parsers.ExpensesTest do
 
     assert actual == expected
   end
+
+  test "handles access errors" do
+    error_xml = """
+    <?xml version="1.0" encoding="utf-8"?>
+    <response xmlns="http://www.freshbooks.com/api/" status="fail">
+      <error>You do not have access to expenses.</error>
+      <code>30010</code>
+    </response>
+    """
+
+    expected = {:error,
+                %{status: "fail", message: "You do not have access to expenses.", code: "30010"}}
+
+    actual = Frex.Parser.parse(error_xml)
+
+    assert actual == expected
+  end
 end
