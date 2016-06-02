@@ -9,7 +9,6 @@ defmodule Frex.Client.Expenses do
 
   def get(expense_id) do
     Frex.Request.build("expense.get", [{:expense_id, %{}, expense_id}])
-    # TODO: Implement the send function.
-    # |> Frex.HTTP.send
+    |> Frex.HTTP.request!
   end
 end
