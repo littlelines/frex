@@ -29,7 +29,8 @@ defmodule Frex.Mixfile do
   defp deps do
     [
       {:quinn, github: "jesseherrick/quinn"},
-      {:xml_builder, "~> 0.0.8"}
+      {:xml_builder, "~> 0.0.8"},
+      {:httpotion, "~> 2.2.0"}
     ]
   end
 end
