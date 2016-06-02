@@ -11,9 +11,14 @@ defmodule Frex.Request do
   ```
   Frex.Request.build("expenses.get", {:expense_id, %{}, 433})
   
-  # => "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<ret method=\"expenses.get\">\n\t<expense_id>433</expense_id>\n</ret>"
+  # => "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<request method=\"expenses.get\">\n\t<expense_id>433</expense_id>\n</request>"
   """
   def build(method) do
+    {:request, %{method: method}, ""}
+    |> XmlBuilder.doc
+  end
+
+  def build(method, []) do
     {:request, %{method: method}, ""}
     |> XmlBuilder.doc
   end

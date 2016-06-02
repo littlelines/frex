@@ -60,4 +60,15 @@ defmodule Frex.RequestTest do
 
     assert expected == actual
   end
+
+  test "`build` works when an empty list is given" do
+    expected = """
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <request method="staff.current"></request>
+    """ |> String.strip
+
+    actual = Frex.Request.build("staff.current", [])
+
+    assert expected == actual
+  end
 end
