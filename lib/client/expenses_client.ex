@@ -1,4 +1,6 @@
 defmodule Frex.Client.Expenses do
+  use Frex.Endpoint, :client
+
   @moduledoc """
   Client module for interacting with the Freshbooks API.
   """
@@ -11,8 +13,8 @@ defmodule Frex.Client.Expenses do
   * `expense_id` (**required**) -- expense ID
   """
   def get(expense_id) do
-    Frex.Request.build("expense.get", [{:expense_id, %{}, expense_id}])
-    |> Frex.HTTP.request!
+    Request.build("expense.get", [{:expense_id, %{}, expense_id}])
+    |> HTTP.request!
   end
 
   @doc """
@@ -27,9 +29,9 @@ defmodule Frex.Client.Expenses do
       * `folder`
   """
   def list(filters \\ %{}) do
-    opts = Frex.Client.opts_to_builder(filters)
+    opts = opts_to_builder(filters)
 
-    Frex.Request.build("expense.list", opts)
-    |> Frex.HTTP.request!
+    Request.build("expense.list", opts)
+    |> HTTP.request!
   end
 end
