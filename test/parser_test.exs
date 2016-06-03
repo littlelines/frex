@@ -153,4 +153,11 @@ defmodule Frex.Parsers.ExpensesTest do
 
     assert actual == expected
   end
+
+  test "handles when a list request is empty" do
+    empty_xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<response xmlns=\"http://www.freshbooks.com/api/\" status=\"ok\">\n  <taxes page=\"1\" per_page=\"25\" pages=\"0\" total=\"0\"/>\n</response>\n"
+
+    expected = {:ok, []}
+    assert Frex.Parser.parse(empty_xml) == expected
+  end
 end

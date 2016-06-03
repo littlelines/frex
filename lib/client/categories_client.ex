@@ -1,6 +1,10 @@
 defmodule Frex.Client.Categories do
   @moduledoc """
   Client module for interacting with the Freshbooks categories endpoint.
+  
+  Staff have access to the get, list and create API calls listed below
+  if the Expenses tab is enabled for staff. Staff cannot delete or
+  update Categories.
   """
   
   use Frex.Endpoint, :client

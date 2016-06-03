@@ -3,10 +3,20 @@ defmodule Frex.Client.Expenses do
 
   @moduledoc """
   Client module for interacting with the Freshbooks API.
+  
+  Expenses that are not associated with a client are represented by
+  client_id as 0. Staff have access to the API calls listed below, but
+  they can only access expenses that belong to them or are assigned to
+  clients they are assigned to.
+
+  IMPORTANT: Expense amounts include taxes. If Expense amount = $100 and
+  tax percent = 5%, then tax amount should be $4.76. This is because
+  the before tax amount is $95.24 and the 5% tax is $4.76, which
+  yields a total of $100, the expense amount.
   """
 
   @doc """
-  Sends a get request to the Freshbooks API expenses endpoint.
+  Return the complete expense details associated with the given expense_id.
   
   ## Parameters
 
@@ -18,7 +28,9 @@ defmodule Frex.Client.Expenses do
   end
 
   @doc """
-  Sends a list request to the Freshbooks API expenses endpoint.
+  Returns a list of expense summaries. You can filter by
+  client_id, category_id, project_id, date_from, date_to or vendor
+  optionally.
   
   ## Parameters
   
