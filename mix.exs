@@ -30,7 +30,9 @@ defmodule Frex.Mixfile do
     [
       {:quinn, github: "jesseherrick/quinn"},
       {:xml_builder, "~> 0.0.8"},
-      {:httpotion, "~> 2.2.0"}
+      {:httpotion, "~> 2.2.0"},
+      {:oauther, "~> 1.0.1"},
+      {:secure_random, "~> 0.2"}
     ]
   end
 end

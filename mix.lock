@@ -8,6 +8,8 @@
   "idna": {:hex, :idna, "1.2.0", "ac62ee99da068f43c50dc69acf700e03a62a348360126260e87f2b54eced86b2", [:rebar3], []},
   "metrics": {:hex, :metrics, "1.0.1", "25f094dea2cda98213cecc3aeff09e940299d950904393b2a29d191c346a8486", [:rebar3], []},
   "mimerl": {:hex, :mimerl, "1.0.2", "993f9b0e084083405ed8252b99460c4f0563e41729ab42d9074fd5e52439be88", [:rebar3], []},
+  "oauther": {:hex, :oauther, "1.0.2", "c2a8476649f3def353db4d38aa498d1313a21e2dd36958ac74f6ee80ef374620", [:mix], []},
   "quinn": {:git, "https://github.com/jesseherrick/quinn.git", "522e3ff33115f977ef3f7f34d929716b6a60a9bf", []},
+  "secure_random": {:hex, :secure_random, "0.3.0", "3091ffcf1b5323b1739be87efa0ba51f27207ab09c200f36dd70c00f685bf735", [:mix], []},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.0", "edee20847c42e379bf91261db474ffbe373f8acb56e9079acb6038d4e0bf414f", [:rebar, :make], []},
   "xml_builder": {:hex, :xml_builder, "0.0.8", "dea10735e15c91e24582e41ee2d3282b7f0177a5b42d6268096a6221ba83226f", [:mix], []}}
