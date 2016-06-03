@@ -13,7 +13,7 @@ defmodule Frex.Client.Expenses do
   * `expense_id` (**required**) -- expense ID
   """
   def get(expense_id) do
-    Request.build("expense.get", [{:expense_id, %{}, expense_id}])
+    Request.build("expense.get", {:expense_id, %{}, expense_id})
     |> HTTP.request!
   end
 

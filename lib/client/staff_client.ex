@@ -1,9 +1,9 @@
 defmodule Frex.Client.Staff do
-  use Frex.Endpoint, :client
-
   @moduledoc """
   Module for interfacing with the staff endpoint of the Freshbooks API.
   """
+
+  use Frex.Endpoint, :client
 
   @doc """
   Gets information about the current staff member (accessing the API).
