@@ -12,9 +12,9 @@ defmodule Frex.Client.Expenses do
 
   * `expense_id` (**required**) -- expense ID
   """
-  def get(expense_id) do
+  def get(credentials, expense_id) do
     Request.build("expense.get", {:expense_id, %{}, expense_id})
-    |> HTTP.request!
+    |> HTTP.request!(credentials)
   end
 
   @doc """
@@ -28,10 +28,10 @@ defmodule Frex.Client.Expenses do
       * `date_to`
       * `folder`
   """
-  def list(filters \\ %{}) do
+  def list(credentials, filters \\ %{}) do
     opts = opts_to_builder(filters)
 
     Request.build("expense.list", opts)
-    |> HTTP.request!
+    |> HTTP.request!(credentials)
   end
 end

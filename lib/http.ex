@@ -11,20 +11,14 @@ defmodule Frex.HTTP do
   
   Returns a parsed form of the response.
   """
-  def request!(request_body) do
-    oauth_token = System.get_env("FRESHBOOKS_OAUTH_TOKEN")
-    oauth_secret = System.get_env("FRESHBOOKS_OAUTH_SECRET")
-
-    send_request(request_body, oauth_token, oauth_secret)
+  def request!(request_body, credentials) do
+    send_request(request_body, credentials)
   end
 
-  def request!(request_body, %{oauth_token: oauth_token, oauth_secret: oauth_secret}) do
-    send_request(request_body, oauth_token, oauth_secret)
-  end
-
-  defp send_request(request_body, oauth_token, oauth_secret) do
+  defp send_request(request_body, %{oauth_token: oauth_token, oauth_secret: oauth_secret}) do
     oauth_consumer_key = Application.get_env(:frex, :freshbooks_oauth_consumer_key) || System.get_env("FRESHBOOKS_OAUTH_CONSUMER_KEY")
     oauth_consumer_secret = Application.get_env(:frex, :freshbooks_oauth_consumer_secret) || System.get_env("FRESHBOOKS_OAUTH_CONSUMER_SECRET")
+
     signature = oauth_signature(
       consumer_key: oauth_consumer_key,
       consumer_secret: oauth_consumer_secret,

@@ -12,9 +12,9 @@ defmodule Frex.Client.Categories do
 
   * `category_id` (**required**) -- categories ID
   """
-  def get(category_id) do
+  def get(credentials, category_id) do
     Request.build("category.get", {:category_id, %{}, category_id})
-    |> HTTP.request!
+    |> HTTP.request!(credentials)
   end
 
   @doc """
@@ -25,10 +25,10 @@ defmodule Frex.Client.Categories do
   * `filters` (**optional**) -- a map of filters for the list request
     * `first_one`
   """
-  def list(filters \\ %{}) do
+  def list(credentials, filters \\ %{}) do
     opts = opts_to_builder(filters)
 
     Request.build("category.list", opts)
-    |> HTTP.request!
+    |> HTTP.request!(credentials)
   end
 end
