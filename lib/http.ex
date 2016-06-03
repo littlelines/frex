@@ -23,9 +23,14 @@ defmodule Frex.HTTP do
   end
 
   defp send_request(request_body, oauth_token, oauth_secret) do
-    oauth_consumer_key = System.get_env("FRESHBOOKS_OAUTH_CONSUMER_KEY")
-    oauth_consumer_secret = System.get_env("FRESHBOOKS_OAUTH_CONSUMER_SECRET")
-    signature = oauth_signature(consumer_key: oauth_consumer_key, consumer_secret: oauth_consumer_secret, token: oauth_token, token_secret: oauth_secret)
+    oauth_consumer_key = Application.get_env(:frex, :freshbooks_oauth_consumer_key) || System.get_env("FRESHBOOKS_OAUTH_CONSUMER_KEY")
+    oauth_consumer_secret = Application.get_env(:frex, :freshbooks_oauth_consumer_secret) || System.get_env("FRESHBOOKS_OAUTH_CONSUMER_SECRET")
+    signature = oauth_signature(
+      consumer_key: oauth_consumer_key,
+      consumer_secret: oauth_consumer_secret,
+      token: oauth_token,
+      token_secret: oauth_secret
+    )
 
     request_headers = [
       "Content-Type": "application/xml",
