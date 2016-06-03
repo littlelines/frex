@@ -1,29 +1,21 @@
 defmodule Frex.Client.Gateways do
   @moduledoc """
   Client module for interacting with the Freshbooks gateways endpoint.
+  
+  The Gateway API provides access to the Online Payment Gateways enabled in the application.
   """
   
   use Frex.Endpoint, :client
 
   @doc """
-  Sends a get request to the Freshbooks API gateways endpoint.
-
-  ## Parameters
-
-  * `gateway_id` (**required**) -- gateways ID
-  """
-  def get(credentials, gateway_id) do
-    Request.build("gateway.get", {:gateway_id, %{}, gateway_id})
-    |> HTTP.request!(credentials)
-  end
-
-  @doc """
-  Sends a list request to the Freshbooks API gateways endpoint.
+  Returns a list of payment gateways enabled in your FreshBooks
+  account that can process transactions. You can optionally filter by
+  autobill_capable to return only gateways that support auto-bills.
 
   ## Parameters
 
   * `filters` (**optional**) -- a map of filters for the list request
-    * `first_one`
+    * `autobill_capable` (boolean, 1 = true, 0 = false)
   """
   def list(credentials, filters \\ %{}) do
     opts = opts_to_builder(filters)
