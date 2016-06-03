@@ -53,7 +53,7 @@ defmodule Mix.Tasks.Gen.Client do
 
       ## Parameters
 
-      * `#{singular_endpoint}_id` (**required**) -- #{endpoint} ID
+      * `#{singular_endpoint}_id` (**required**) -- #{singular_endpoint} ID
       \"\"\"
       def get(credentials, #{singular_endpoint}_id) do
         Request.build("#{singular_endpoint}.get", {:#{singular_endpoint}_id, %{}, #{singular_endpoint}_id})
