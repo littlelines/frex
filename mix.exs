@@ -28,11 +28,14 @@ defmodule Frex.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:quinn, github: "jesseherrick/quinn"},
-      {:xml_builder, "~> 0.0.8"},
+      # Production
       {:httpotion, "~> 2.2.0"},
       {:oauther, "~> 1.0.1"},
-      {:secure_random, "~> 0.2"}
+      {:quinn, github: "jesseherrick/quinn"},
+      {:secure_random, "~> 0.2"},
+      {:xml_builder, "~> 0.0.8"},
+      # Development
+      {:mix_test_watch, "~> 0.2", only: :dev}
     ]
   end
 end
