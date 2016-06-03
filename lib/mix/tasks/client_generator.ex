@@ -13,21 +13,69 @@ defmodule Mix.Tasks.Gen.Client do
 
   def run, do: usage
 
-  def run([endpoint | _]) do
-    Mix.Generator.create_file("lib/client/#{endpoint}_client.ex", template(endpoint))
+  def run([endpoint | [singular_endpoint | _]]) do
+    endpoint = String.downcase(endpoint)
+    Mix.Generator.create_file("lib/client/#{endpoint}_client.ex", template(endpoint, singular_endpoint))
+
+    noun = String.capitalize(endpoint)
+    Mix.Generator.create_file("test/client/#{endpoint}_client_test.exs", """
+    defmodule Frex.Client.#{noun}Test do
+      use ExUnit.Case, async: true
+      alias Frex.Client.#{noun}
+
+      test \"#{noun}.get calls are successful\" do
+        {status, _} = #{noun}.get
+        assert status == :ok
+      end
+
+      test \"#{noun}.list calls are successful\" do
+        {status, _} = #{noun}.list
+        assert status == :ok
+      end
+    end
+    """)
   end
 
   def run(_), do: usage
 
-  defp template(endpoint) do
+  defp template(endpoint, singular_endpoint) do
     """
     defmodule Frex.Client.#{String.capitalize(endpoint)} do
       @moduledoc \"\"\"
       Client module for interacting with the Freshbooks #{endpoint} endpoint.
       \"\"\"
+      
+      use Frex.Endpoint, :client
+
+      @doc \"\"\"
+      Sends a get request to the Freshbooks API #{endpoint} endpoint.
+
+      ## Parameters
+
+      * `#{singular_endpoint}_id` (**required**) -- #{endpoint} ID
+      \"\"\"
+      def get(#{singular_endpoint}_id) do
+        Request.build("#{singular_endpoint}.get", {:#{singular_endpoint}_id, %{}, #{singular_endpoint}_id})
+        |> HTTP.request!
+      end
+
+      @doc \"\"\"
+      Sends a list request to the Freshbooks API #{endpoint} endpoint.
+
+      ## Parameters
+
+      * `filters` (**optional**) -- a map of filters for the list request
+        * `first_one`
+      \"\"\"
+      def list(filters \\\\ %{}) do
+        opts = opts_to_builder(filters)
+
+        Request.build("#{singular_endpoint}.list", opts)
+        |> HTTP.request!
+      end
     end
     """
   end
 
-  defp usage, do: IO.puts "Usage: mix gen.client <ENDPOINT>"
+  defp usage, do: IO.puts "Usage: mix gen.client Expenses expense"
 end
