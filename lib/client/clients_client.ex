@@ -18,12 +18,19 @@ defmodule Frex.Client.Clients do
   end
 
   @doc """
-  Sends a list request to the Freshbooks API clients endpoint.
+  Returns a list of client summaries in order of descending client_id.
 
   ## Parameters
 
   * `filters` (**optional**) -- a map of filters for the list request
-    * `first_one`
+    * `email`
+    * `username`
+    * `updated_from`
+    * `updated_to`
+    * `page`
+    * `per_page`
+    * `folder`
+    * `notes`
   """
   def list(credentials, filters \\ %{}) do
     opts = opts_to_builder(filters)

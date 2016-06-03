@@ -6,7 +6,7 @@ defmodule Frex.Client.Categories do
   use Frex.Endpoint, :client
 
   @doc """
-  Sends a get request to the Freshbooks API categories endpoint.
+  Return the complete category details associated with the given category_id.
 
   ## Parameters
 
@@ -18,17 +18,12 @@ defmodule Frex.Client.Categories do
   end
 
   @doc """
-  Sends a list request to the Freshbooks API categories endpoint.
+  Returns a list of expense categories.
 
   ## Parameters
-
-  * `filters` (**optional**) -- a map of filters for the list request
-    * `first_one`
   """
-  def list(credentials, filters \\ %{}) do
-    opts = opts_to_builder(filters)
-
-    Request.build("category.list", opts)
+  def list(credentials) do
+    Request.build("category.list")
     |> HTTP.request!(credentials)
   end
 end
