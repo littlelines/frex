@@ -21,8 +21,7 @@
 
 ```elixir
 # Set OAuth credentials.
-credentials = %Frex.Credentials{oauth_token: "<OAUTH_TOKEN>",
-oauth_secret: "<OAUTH_SECRET>"}
+credentials = %Frex.Credentials{oauth_token: "<OAUTH_TOKEN>", oauth_secret: "<OAUTH_SECRET>"}
 
 # Make a request!
 
