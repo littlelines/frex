@@ -22,14 +22,15 @@ defmodule Mix.Tasks.Gen.Client do
     defmodule Frex.Client.#{noun}Test do
       use ExUnit.Case, async: true
       alias Frex.Client.#{noun}
+      import Credentials
 
       test \"#{noun}.get calls are successful\" do
-        {status, _} = #{noun}.get(1)
+        {status, _} = #{noun}.get(credentials, 1)
         assert status == :ok
       end
 
       test \"#{noun}.list calls are successful\" do
-        {status, _} = #{noun}.list
+        {status, _} = #{noun}.list(credentials)
         assert status == :ok
       end
     end
