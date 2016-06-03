@@ -24,7 +24,7 @@ defmodule Mix.Tasks.Gen.Client do
       alias Frex.Client.#{noun}
 
       test \"#{noun}.get calls are successful\" do
-        {status, _} = #{noun}.get
+        {status, _} = #{noun}.get(1)
         assert status == :ok
       end
 
