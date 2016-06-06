@@ -10,22 +10,22 @@ defmodule Frex.Parser do
 
   Returns a tuple with `:ok` and a `List` of `Map`s if the response is multiple item.
   """
-  def parse(xml_string) do
+  def parse(xml_string) when is_bitstring(xml_string) do
     [initial_response] = Quinn.parse(xml_string)
+    parse(initial_response)
+  end
 
-    case initial_response do
-      %{attr: [_, status: "fail"]} ->
-        %{attr: [_, status: "fail"], name: :response, value: [%{name: :error, value: [error_message]} | [%{name: :code, value: [error_code]} | _]]} = initial_response
+  def parse(%{attr: [_, status: "fail"], name: :response, value: [%{name: :error, value: [error_message]} | [%{name: :code, value: [error_code]} | _]]}) do
+    {:error,
+      %{status: "fail", message: error_message, code: error_code}}
+  end
 
-        {:error,
-         %{status: "fail", message: error_message, code: error_code}}
-      %{attr: [_, status: "ok"], name: :response, value: [%{attr: _, name: _, value: []}]} ->
-        {:ok, []}
-      %{attr: [_, status: "ok"]} ->
-        %{value: [%{value: response_data}]} = initial_response
+  def parse(%{attr: [_, status: "ok"], name: :response, value: [%{attr: _, name: _, value: []}]}) do
+    {:ok, []}
+  end
 
-        {:ok, parse_response(response_data)}
-    end
+  def parse(%{attr: [_, status: "ok"], value: [%{value: response_data}]}) do
+    {:ok, parse_response(response_data)}
   end
 
   defp parse_response(response_data = [%{value: attrs} | _]) when length(attrs) > 1 do

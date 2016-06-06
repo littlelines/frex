@@ -1,6 +1,6 @@
 defmodule Frex.Client.EmailTemplatesTest do
   use ExUnit.Case, async: true
-  alias Frex.Client.Emailtemplates
+  alias Frex.Client.EmailTemplates
   import Credentials
 
   # TODO: Make email templates for testing.
@@ -9,7 +9,7 @@ defmodule Frex.Client.EmailTemplatesTest do
   #   assert status == :ok
   # end
 
-  test "Emailtemplates.list calls are successful" do
+  test "EmailTemplates.list calls are successful" do
     {status, _} = EmailTemplates.list(credentials)
     assert status == :ok
   end
