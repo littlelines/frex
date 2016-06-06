@@ -28,7 +28,6 @@ defmodule Frex.Parser do
     end
   end
 
-  {:ok, %{status: "ok"}}
   defp parse_response(response_data = [%{value: attrs} | _]) when length(attrs) > 1 do
     response_data
     |> clean_response_list
