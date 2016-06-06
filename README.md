@@ -37,7 +37,8 @@ You can find these values in your Freshbooks settings under "API"
 ### OAuth Configuration
 
 Freshbooks _still_ uses OAuth 1.0A, so you're going to have to create
-a flow for getting your users' keys.
+a flow for getting your users' keys. If you want one for your own
+development purposes, [I did the gruntwork for you](https://gist.github.com/JesseHerrick/4aa28721980876fa5730b26161b8c11d).
 
 ## Getting Started
 
