@@ -1,21 +1,43 @@
 # Frex
 
-> A comprehensive and straightforward Phoenix-app-friendly Freshbooks API.
+> A comprehensive and straightforward Phoenix-app friendly Freshbooks API.
 
 ## Installation
 
-
-  1. Add frex to your list of dependencies in `mix.exs`:
+  1. Add Frex to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:frex, "~> 0.0.1"}]
+          [
+            {:frex, github: "littlelines/frex"}
+          ]
         end
 
-  2. Ensure frex is started before your application:
+  2. Ensure Frex is started before your application:
 
         def application do
           [applications: [:frex]]
         end
+
+## Configuration
+
+Frex interfaces with the Freshbooks API. In order to integrate it with
+your application, you must set a few variables.
+
+If you are running Frex inside of a Phoenix app, add the following to
+your `config/prod.secrets.exs`:
+
+```elixir
+config :frex, freshbooks_oauth_consumer_key: "mycompanyname"
+config :frex, freshbooks_oauth_consumer_secret: "<CONSUMER SECRET>"
+```
+
+You can find these values in your Freshbooks settings under "API"
+(Freshbooks requires you to apply a few days in advance, however).
+
+### OAuth Configuration
+
+Freshbooks _still_ uses OAuth 1.0A, so you're going to have to create
+a flow for getting your users' keys.
 
 ## Getting Started
 
@@ -69,3 +91,6 @@ Frex.Client.TimeEntries.list(creds, %{project_id: 9311})
     notes: "Worked on Web Development", project_id: "9311", staff_id: "39971",
     task_id: "106512", time_entry_id: "10932"}]}
 ```
+
+## Documentation
+
