@@ -3,8 +3,8 @@ defmodule Credentials do
   # Grabs OAuth credentials from your environment and puts them in `credentials` as a struct.
   def credentials do
     %Frex.Credentials{
-      oauth_token: System.get_env("FRESHBOOKS_OAUTH_TOKEN"),
-      oauth_secret: System.get_env("FRESHBOOKS_OAUTH_SECRET")
+      oauth_token: Application.get_env(:frex, :freshbooks_oauth_token),
+      oauth_secret: Application.get_env(:frex, :freshbooks_oauth_secret)
     }
   end
 end

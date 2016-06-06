@@ -15,7 +15,8 @@ defmodule Frex.Client.Items do
   * `item_id` (**required**) -- items ID
   """
   def get(credentials, item_id) do
-    Request.build("item.get", {:item_id, %{}, item_id})
+    "item.get"
+    |> Request.build({:item_id, %{}, item_id})
     |> HTTP.request!(credentials)
   end
 
@@ -34,7 +35,8 @@ defmodule Frex.Client.Items do
   def list(credentials, filters \\ %{}) do
     opts = opts_to_builder(filters)
 
-    Request.build("item.list", opts)
+    "item.list"
+    |> Request.build(opts)
     |> HTTP.request!(credentials)
   end
 end

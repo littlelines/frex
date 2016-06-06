@@ -15,7 +15,7 @@ defmodule Frex.Parser do
 
     case initial_response do
       %{attr: [_, status: "fail"]} ->
-        %{value: [%{name: :error, value: [error_message]}, %{name: :code, value: [error_code]}]} = initial_response
+        %{attr: [_, status: "fail"], name: :response, value: [%{name: :error, value: [error_message]} | [%{name: :code, value: [error_code]} | _]]} = initial_response
 
         {:error,
          %{status: "fail", message: error_message, code: error_code}}
@@ -36,7 +36,9 @@ defmodule Frex.Parser do
   end
 
   defp parse_response(response_data) do
-    put_attrs(response_data) |> Map.put(:status, "ok")
+    response_data
+    |> put_attrs
+    |> Map.put(:status, "ok")
   end
 
   # Puts attributes from the Freshbooks API (`response`) response into a Map.

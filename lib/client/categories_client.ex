@@ -17,17 +17,19 @@ defmodule Frex.Client.Categories do
   * `category_id` (**required**) -- categories ID
   """
   def get(credentials, category_id) do
-    Request.build("category.get", {:category_id, %{}, category_id})
+    "category.get"
+    |> Request.build({:category_id, %{}, category_id})
     |> HTTP.request!(credentials)
   end
 
   @doc """
   Returns a list of expense categories.
-
-  ## Parameters
   """
-  def list(credentials) do
-    Request.build("category.list")
+  def list(credentials, filters \\ %{}) do
+    opts = opts_to_builder(filters)
+
+    "category.list"
+    |> Request.build(opts)
     |> HTTP.request!(credentials)
   end
 end

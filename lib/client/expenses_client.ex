@@ -23,7 +23,8 @@ defmodule Frex.Client.Expenses do
   * `expense_id` (**required**) -- expense ID
   """
   def get(credentials, expense_id) do
-    Request.build("expense.get", {:expense_id, %{}, expense_id})
+    "expense.get"
+    |> Request.build({:expense_id, %{}, expense_id})
     |> HTTP.request!(credentials)
   end
 
@@ -43,7 +44,8 @@ defmodule Frex.Client.Expenses do
   def list(credentials, filters \\ %{}) do
     opts = opts_to_builder(filters)
 
-    Request.build("expense.list", opts)
+    "expense.list"
+    |> Request.build(opts)
     |> HTTP.request!(credentials)
   end
 end

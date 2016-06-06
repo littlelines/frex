@@ -20,7 +20,8 @@ defmodule Frex.Client.Projects do
   * `project_id` (**required**) -- projects ID
   """
   def get(credentials, project_id) do
-    Request.build("project.get", {:project_id, %{}, project_id})
+    "project.get"
+    |> Request.build({:project_id, %{}, project_id})
     |> HTTP.request!(credentials)
   end
 
@@ -36,7 +37,8 @@ defmodule Frex.Client.Projects do
   def list(credentials, filters \\ %{}) do
     opts = opts_to_builder(filters)
 
-    Request.build("project.list", opts)
+    "project.list"
+    |> Request.build(opts)
     |> HTTP.request!(credentials)
   end
 end

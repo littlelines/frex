@@ -13,7 +13,8 @@ defmodule Frex.Client.Estimates do
   * `estimate_id` (**required**) -- estimates ID
   """
   def get(credentials, estimate_id) do
-    Request.build("estimate.get", {:estimate_id, %{}, estimate_id})
+    "estimate.get"
+    |> Request.build({:estimate_id, %{}, estimate_id})
     |> HTTP.request!(credentials)
   end
 
@@ -28,7 +29,8 @@ defmodule Frex.Client.Estimates do
   def list(credentials, filters \\ %{}) do
     opts = opts_to_builder(filters)
 
-    Request.build("estimate.list", opts)
+    "estimate.list"
+    |> Request.build(opts)
     |> HTTP.request!(credentials)
   end
 end

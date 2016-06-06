@@ -17,7 +17,8 @@ defmodule Frex.Client.Payments do
   * `payment_id` (**required**) -- payments ID
   """
   def get(credentials, payment_id) do
-    Request.build("payment.get", {:payment_id, %{}, payment_id})
+    "payment.get"
+    |> Request.build({:payment_id, %{}, payment_id})
     |> HTTP.request!(credentials)
   end
 
@@ -38,7 +39,8 @@ defmodule Frex.Client.Payments do
   def list(credentials, filters \\ %{}) do
     opts = opts_to_builder(filters)
 
-    Request.build("payment.list", opts)
+    "payment.list"
+    |> Request.build(opts)
     |> HTTP.request!(credentials)
   end
 end

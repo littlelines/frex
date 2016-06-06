@@ -18,7 +18,8 @@ defmodule Frex.Client.Languages do
   def list(credentials, filters \\ %{}) do
     opts = opts_to_builder(filters)
 
-    Request.build("language.list", opts)
+    "language.list"
+    |> Request.build(opts)
     |> HTTP.request!(credentials)
   end
 end

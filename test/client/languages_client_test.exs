@@ -1,3 +1,5 @@
+require IEx
+
 defmodule Frex.Client.LanguagesTest do
   use ExUnit.Case, async: true
   alias Frex.Client.Languages

@@ -20,7 +20,8 @@ defmodule Frex.Client.Gateways do
   def list(credentials, filters \\ %{}) do
     opts = opts_to_builder(filters)
 
-    Request.build("gateway.list", opts)
+    "gateway.list"
+    |> Request.build(opts)
     |> HTTP.request!(credentials)
   end
 end

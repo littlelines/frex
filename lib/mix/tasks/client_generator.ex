@@ -56,7 +56,8 @@ defmodule Mix.Tasks.Gen.Client do
       * `#{singular_endpoint}_id` (**required**) -- #{singular_endpoint} ID
       \"\"\"
       def get(credentials, #{singular_endpoint}_id) do
-        Request.build("#{singular_endpoint}.get", {:#{singular_endpoint}_id, %{}, #{singular_endpoint}_id})
+        "#{singular_endpoint}.get"
+        |> Request.build({:#{singular_endpoint}_id, %{}, #{singular_endpoint}_id})
         |> HTTP.request!(credentials)
       end
 
@@ -71,7 +72,8 @@ defmodule Mix.Tasks.Gen.Client do
       def list(credentials, filters \\\\ %{}) do
         opts = opts_to_builder(filters)
 
-        Request.build("#{singular_endpoint}.list", opts)
+        "#{singular_endpoint}.list"
+        |> Request.build(opts)
         |> HTTP.request!(credentials)
       end
     end
