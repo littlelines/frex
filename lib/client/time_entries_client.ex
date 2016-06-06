@@ -1,6 +1,6 @@
 defmodule Frex.Client.TimeEntries do
   @moduledoc """
-  Client module for interacting with the Freshbooks timeentries endpoint.
+  Client module for interacting with the Freshbooks time entries endpoint.
   """
   
   use Frex.Endpoint, :client
