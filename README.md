@@ -94,3 +94,13 @@ Frex.Client.TimeEntries.list(creds, %{project_id: 9311})
 
 ## Documentation
 
+* Not sure if we're going to upload this to Hex yet, so for now the
+  docs are in the `doc/` directory if you'd like to read them.
+* [Freshbooks API Docs](https://www.freshbooks.com/developers)
+  everything you need to know when trying to figure out which
+  arguments to put in a request.
+
+### Things not Covered
+
+* __Receipts__ -- XML can't parse the response for some reason
+* __Email Templates__ -- Needs fake data for tests
