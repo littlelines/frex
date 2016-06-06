@@ -4,3 +4,6 @@
 erl_crash.dump
 *.ez
 .env
+/config/test.exs
+/config/dev.exs
+**/*#.

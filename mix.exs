@@ -35,7 +35,8 @@ defmodule Frex.Mixfile do
       {:secure_random, "~> 0.2"},
       {:xml_builder, "~> 0.0.8"},
       # Development
-      {:mix_test_watch, "~> 0.2", only: :dev}
+      {:credo, "~> 0.3", only: [:dev, :test]},
+      {:mix_test_watch, "~> 0.2", only: [:dev, :test]}
     ]
   end
 end
