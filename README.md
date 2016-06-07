@@ -8,7 +8,7 @@
 
         def deps do
           [
-            {:frex, github: "littlelines/frex"}
+            {:frex, git: "git@github.com:littlelines/frex.git"}
           ]
         end
 
