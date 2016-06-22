@@ -29,7 +29,7 @@ defmodule Frex.Mixfile do
   defp deps do
     [
       # Production
-      {:httpotion, "~> 2.2.0"},
+      {:httpotion, "~> 3.0"},
       {:oauther, "~> 1.0.1"},
       {:quinn, github: "jesseherrick/quinn"},
       {:secure_random, "~> 0.2"},
