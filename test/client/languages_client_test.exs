@@ -6,7 +6,7 @@ defmodule Frex.Client.LanguagesTest do
   import Credentials
 
   test "Languages.list calls are successful" do
-    {status, _} = Languages.list(credentials)
+    {status, _, _} = Languages.list(credentials)
     assert status == :ok
   end
 end

@@ -90,7 +90,8 @@ Frex.Client.TimeEntries.list(creds, %{project_id: 9311})
     task_id: "106513", time_entry_id: "10927"},
   %{billed: "1", date: "2016-05-03", hours: "4.03",
     notes: "Worked on Web Development", project_id: "9311", staff_id: "39971",
-    task_id: "106512", time_entry_id: "10932"}]}
+    task_id: "106512", time_entry_id: "10932"}]},
+    %{page: 1, pages: 2, total: 20, per_page: 10}}
 ```
 
 ## Documentation

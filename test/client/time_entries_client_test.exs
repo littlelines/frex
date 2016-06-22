@@ -9,12 +9,12 @@ defmodule Frex.Client.TimeEntriesTest do
   end
 
   test "TimeEntries.list calls are successful" do
-    {status, _} = TimeEntries.list(credentials)
+    {status, _, _} = TimeEntries.list(credentials)
     assert status == :ok
   end
 
   test "TimeEntries.list by project ID" do
-    {status, entries} = TimeEntries.list(credentials, %{project_id: 9310})
+    {status, entries, _} = TimeEntries.list(credentials, %{project_id: 9310})
 
     assert status == :ok
 

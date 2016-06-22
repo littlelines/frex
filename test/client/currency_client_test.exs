@@ -4,7 +4,7 @@ defmodule Frex.Client.CurrencyTest do
   import Credentials
 
   test "Currency.list calls are successful" do
-    {status, _} = Currency.list(credentials)
+    {status, _, _} = Currency.list(credentials)
     assert status == :ok
   end
 end

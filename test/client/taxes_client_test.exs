@@ -9,7 +9,7 @@ defmodule Frex.Client.TaxesTest do
   end
 
   test "Taxes.list calls are successful" do
-    {status, _} = Taxes.list(credentials)
+    {status, _, _} = Taxes.list(credentials)
     assert status == :ok
   end
 end

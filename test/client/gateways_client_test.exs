@@ -4,7 +4,7 @@ defmodule Frex.Client.GatewaysTest do
   import Credentials
 
   test "Gateways.list calls are successful" do
-    {status, _} = Gateways.list(credentials)
+    {status, _, _} = Gateways.list(credentials)
     assert status == :ok
   end
 end

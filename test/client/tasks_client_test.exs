@@ -9,7 +9,7 @@ defmodule Frex.Client.TasksTest do
   end
 
   test "Tasks.list calls are successful" do
-    {status, _} = Tasks.list(credentials)
+    {status, _, _} = Tasks.list(credentials)
     assert status == :ok
   end
 end

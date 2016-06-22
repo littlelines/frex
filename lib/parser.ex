@@ -24,6 +24,10 @@ defmodule Frex.Parser do
     {:ok, []}
   end
 
+  def parse(%{attr: [_, status: "ok"], value: [%{attr: page_info, value: response_data}]}) when length(page_info) > 0 do
+    {:ok, parse_response(response_data), clean_attrs(page_info)}
+  end
+
   def parse(%{attr: [_, status: "ok"], value: [%{value: response_data}]}) do
     {:ok, parse_response(response_data)}
   end
@@ -55,5 +59,13 @@ defmodule Frex.Parser do
       %{value: value} = item
       value
     end
+  end
+
+  defp clean_attrs(attrs) do
+    attr_map = Enum.map(attrs, fn({key, val}) ->
+      {key, String.to_integer(val)}
+    end)
+
+    attr_map |> Enum.into(%{})
   end
 end

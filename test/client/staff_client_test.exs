@@ -14,7 +14,7 @@ defmodule Frex.Client.StaffTest do
   end
 
   test "Staff.list calls are successful" do
-    {status, _} = Staff.list(credentials)
+    {status, _, _} = Staff.list(credentials)
     assert status == :ok
   end
 end

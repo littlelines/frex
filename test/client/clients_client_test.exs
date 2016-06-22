@@ -10,7 +10,8 @@ defmodule Frex.Client.ClientsTest do
   end
 
   test "Clients.list calls are successful" do
-    {status, _} = Clients.list(credentials)
+    {status, _, _} = Clients.list(credentials)
+
     assert status == :ok
   end
 end

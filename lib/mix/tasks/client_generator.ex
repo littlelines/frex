@@ -30,7 +30,7 @@ defmodule Mix.Tasks.Gen.Client do
       end
 
       test \"#{noun}.list calls are successful\" do
-        {status, _} = #{noun}.list(credentials)
+        {status, _, _} = #{noun}.list(credentials)
         assert status == :ok
       end
     end

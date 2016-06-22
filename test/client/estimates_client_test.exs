@@ -9,7 +9,7 @@ defmodule Frex.Client.EstimatesTest do
   end
 
   test "Estimates.list calls are successful" do
-    {status, _} = Estimates.list(credentials)
+    {status, _, _} = Estimates.list(credentials)
     assert status == :ok
   end
 end

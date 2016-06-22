@@ -9,7 +9,7 @@ defmodule Frex.Client.RecurringTest do
   end
 
   test "Recurring.list calls are successful" do
-    {status, _} = Recurring.list(credentials)
+    {status, _, _} = Recurring.list(credentials)
     assert status == :ok
   end
 end
