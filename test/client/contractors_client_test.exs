@@ -3,10 +3,11 @@ defmodule Frex.Client.ContractorsTest do
   alias Frex.Client.Contractors
   import Credentials
 
-  test "Contractors.get calls are successful" do
-    {status, _} = Contractors.get(credentials, 41077)
-    assert status == :ok
-  end
+  # TODO: Add more contractors without paying for it...
+  # test "Contractors.get calls are successful" do
+  #   {status, _} = Contractors.get(credentials, 41077)
+  #   assert status == :ok
+  # end
 
   test "Contractors.list calls are successful" do
     {status, _} = Contractors.list(credentials)

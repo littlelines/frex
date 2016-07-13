@@ -29,4 +29,35 @@ defmodule Frex.Request do
     {:request, %{method: method}, builder_tuple}
     |> XmlBuilder.doc
   end
+
+  @doc """
+  Paginates through a list to get all data in one big list.
+  
+  Returns a list.
+  """
+  def list_all(creds, list, acc \\ [], inc \\ 1) do
+    args = %{page: inc}
+    {:ok, body, page_data} = list.(creds, args)
+
+    data = acc ++ body
+
+    if more_pages?(page_data) do
+      list_all(creds, list, data, inc + 1)
+    else
+      data
+    end
+  end
+
+  @doc """
+  Checks the current page data to see if more pages need to be loaded.
+
+  Returns a boolean.
+  """
+  def more_pages?(%{page: page, per_page: per_page, pages: pages, total: total})
+    when per_page < total and page < pages do
+
+    true
+  end
+
+  def more_pages?(_), do: false
 end

@@ -1,5 +1,6 @@
 defmodule Frex.RequestTest do
   use ExUnit.Case, async: true
+  import Credentials
 
   test "`build` builds a proper XML request for GET" do
     expected = """
@@ -70,5 +71,17 @@ defmodule Frex.RequestTest do
     actual = Frex.Request.build("staff.current", [])
 
     assert expected == actual
+  end
+
+  describe ".list_all" do
+    test "it paginates through a list and returns a bigger one" do
+      actual = Frex.Request.list_all(credentials, fn(creds, args) ->
+        Frex.Client.TimeEntries.list(creds, args)
+      end) |> length
+
+      {:ok, _, %{total: total}} = Frex.Client.TimeEntries.list(credentials)
+
+      assert actual == total
+    end
   end
 end
