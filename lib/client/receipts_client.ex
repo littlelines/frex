@@ -5,15 +5,15 @@ defmodule Frex.Client.Receipts do
   
   # use Frex.Endpoint, :client
 
-  @doc """
-  Sends a get request to the Freshbooks API receipts endpoint.
+  # @doc """
+  # Sends a get request to the Freshbooks API receipts endpoint.
   
-  Gets information for a specified receipt.
+  # Gets information for a specified receipt.
 
-  ## Parameters
+  # ## Parameters
 
-  * `expense_id` (**required**) -- expense ID for receipt
-  """
+  # * `expense_id` (**required**) -- expense ID for receipt
+  # """
   # TODO: Get receipts to work.
   # def get(credentials, expense_id) do
   #   "receipt.get"
