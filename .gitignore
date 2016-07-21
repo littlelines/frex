@@ -7,3 +7,4 @@ erl_crash.dump
 /config/test.exs
 /config/dev.exs
 **/*#.
+/doc

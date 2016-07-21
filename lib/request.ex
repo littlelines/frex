@@ -35,14 +35,14 @@ defmodule Frex.Request do
   
   Returns a list.
   """
-  def list_all(creds, list, acc \\ [], inc \\ 1) do
+  def list_all(creds, list_fun, acc \\ [], inc \\ 1) do
     args = %{page: inc}
-    {:ok, body, page_data} = list.(creds, args)
+    {:ok, body, page_data} = list_fun.(creds, args)
 
     data = acc ++ body
 
     if more_pages?(page_data) do
-      list_all(creds, list, data, inc + 1)
+      list_all(creds, list_fun, data, inc + 1)
     else
       data
     end

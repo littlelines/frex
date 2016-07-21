@@ -42,7 +42,13 @@ defmodule Frex.HTTP do
     HTTPotion.start
 
     response = HTTPotion.post "https://#{oauth_consumer_key}#{@api_base}", [body: request_body, headers: request_headers]
-    Frex.Parser.parse(response.body)
+
+    case response do
+      %HTTPotion.ErrorResponse{message: "nxdomain"} ->
+        raise ArgumentError, message: "Missing OAuth consumer credentials"
+      _ ->
+        Frex.Parser.parse(response.body)
+    end
   end
 
   defp oauth_signature([consumer_key: consumer_key, consumer_secret: consumer_secret, token: token, token_secret: token_secret]) do
