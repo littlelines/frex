@@ -7,6 +7,10 @@ defmodule Frex.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     licenses: ["Apache 2.0"],
+     name: "frex",
+     maintainers: ["Jesse Herrick"],
+     links: %{"Github" => "https://github.com/littlelines/frex"},
      deps: deps]
   end
 
