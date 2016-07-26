@@ -7,10 +7,13 @@ defmodule Frex.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     licenses: ["Apache 2.0"],
-     name: "frex",
-     maintainers: ["Jesse Herrick"],
-     links: %{"Github" => "https://github.com/littlelines/frex"},
+     package: [
+      licenses: ["Apache 2.0"],
+      name: "frex",
+      maintainers: ["Jesse Herrick"],
+      links: %{"Github" => "https://github.com/littlelines/frex"},
+      description: "A full-featured Elixir client for Freshbooks."
+     ],
      deps: deps]
   end
 
