@@ -21,7 +21,7 @@ defmodule Frex.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :httpotion, :oauther, :quinn, :secure_random, :xml_builder]]
   end
 
   # Dependencies can be Hex packages:

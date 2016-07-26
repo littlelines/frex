@@ -39,8 +39,6 @@ defmodule Frex.HTTP do
         "oauth_signature=\"#{signature}\""
     ]
 
-    HTTPotion.start
-
     response = HTTPotion.post "https://#{oauth_consumer_key}#{@api_base}", [body: request_body, headers: request_headers]
 
     case response do
