@@ -15,7 +15,7 @@ defmodule Frex.Client.Webhooks do
   """
   def create(credentials, event, uri) do
     "callback.create"
-    |> Request.build([{:event, %{}, event}, {:uri, %{}, uri}])
+    |> Request.build({:callback, %{}, [{:event, %{}, event}, {:uri, %{}, uri}]})
     |> HTTP.request!(credentials)
   end
 
@@ -29,7 +29,7 @@ defmodule Frex.Client.Webhooks do
   """
   def verify(credentials, callback_id, verifier) do
     "callback.verify"
-    |> Request.build([{:callback_id, %{}, callback_id}, {:verifier, %{}, verifier}])
+    |> Request.build({:callback, %{}, [{:callback_id, %{}, callback_id}, {:verifier, %{}, verifier}]})
     |> HTTP.request!(credentials)
   end
 end

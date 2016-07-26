@@ -28,6 +28,12 @@ defmodule Frex.Parser do
     {:ok, parse_response(response_data), clean_attrs(page_info)}
   end
 
+  def parse(%{attr: [_, status: "ok"], value: [%{name: key, value: [value]}]}) do
+    {:ok,
+      %{key => value}
+      |> Map.put(:status, "ok")}
+  end
+
   def parse(%{attr: [_, status: "ok"], value: [%{value: response_data}]}) do
     {:ok, parse_response(response_data)}
   end
