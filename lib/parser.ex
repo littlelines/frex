@@ -28,9 +28,10 @@ defmodule Frex.Parser do
     {:ok, parse_response(response_data), clean_attrs(page_info)}
   end
 
-  def parse(%{attr: [_, status: "ok"], value: [%{name: key, value: [value]}]}) do
+  # Specific so that webhooks/reports don't get jumbled.
+  def parse(%{attr: [_, status: "ok"], value: [%{name: :callback_id, value: [value]}]}) do
     {:ok,
-      %{key => value}
+      %{callback_id: value}
       |> Map.put(:status, "ok")}
   end
 
