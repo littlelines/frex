@@ -39,6 +39,10 @@ defmodule Frex.Parser do
     {:ok, parse_response(response_data)}
   end
 
+  def parse(%{attr: [_, status: "ok"], value: []}) do
+    {:ok, %{status: "ok"}}
+  end
+
   defp parse_response(response_data = [%{value: attrs} | _]) when length(attrs) > 1 do
     response_data
     |> clean_response_list
