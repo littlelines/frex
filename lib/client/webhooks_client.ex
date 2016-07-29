@@ -32,4 +32,28 @@ defmodule Frex.Client.Webhooks do
     |> Request.build({:callback, %{}, [{:callback_id, %{}, callback_id}, {:verifier, %{}, verifier}]})
     |> HTTP.request!(credentials)
   end
+
+  @doc """
+  Lists all webhooks.
+  """
+  def list(credentials, filters \\ %{}) do
+    opts = opts_to_builder(filters)
+
+    "callback.list"
+    |> Request.build(opts)
+    |> HTTP.request!(credentials)
+  end
+
+  @doc """
+  Deletes a webhook.
+  
+  ## Parameters
+  
+  * callback_id -- ID of the callback you wish to destroy
+  """
+  def delete(credentials, callback_id) do
+    "callback.delete"
+    |> Request.build({:callback_id, %{}, callback_id})
+    |> HTTP.request!(credentials)
+  end
 end
