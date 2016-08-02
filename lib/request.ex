@@ -33,6 +33,11 @@ defmodule Frex.Request do
   @doc """
   Paginates through a list to get all data in one big list.
   
+  `list_fun` is a function that is passed two params:
+
+      * `creds` -- credentials for the API
+      * `args` -- arguments for the request (e.g. list filter map)
+  
   Returns a list.
   """
   def list_all(creds, list_fun, acc \\ [], inc \\ 1) do
