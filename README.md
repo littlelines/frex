@@ -6,17 +6,21 @@
 
   1. Add Frex to your list of dependencies in `mix.exs`:
 
-        def deps do
-          [
-            {:frex, git: "git@github.com:littlelines/frex.git"}
-          ]
-        end
+```elixir
+def deps do
+  [
+    {:frex, git: "git@github.com:littlelines/frex.git"}
+  ]
+end
+```
 
   2. Ensure Frex is started before your application:
 
-        def application do
-          [applications: [:frex]]
-        end
+```elixir
+def application do
+  [applications: [:frex]]
+end
+```
 
 ## Configuration
 
