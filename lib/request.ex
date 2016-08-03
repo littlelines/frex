@@ -42,7 +42,11 @@ defmodule Frex.Request do
   """
   def list_all(creds, list_fun, acc \\ [], inc \\ 1) do
     args = %{page: inc}
-    {:ok, body, page_data} = list_fun.(creds, args)
+
+    {:ok, body, page_data} = case list_fun.(creds, args) do
+      {:ok, body, page_data} -> {:ok, body, page_data}
+      {:ok, []} -> {:ok, [], %{}}
+    end
 
     data = acc ++ body
 

@@ -83,5 +83,11 @@ defmodule Frex.RequestTest do
 
       assert actual == total
     end
+
+    test "it returns an empty list if an empty list is received" do
+      assert Frex.Request.list_all(credentials, fn(_creds, _args) ->
+        {:ok, []}
+      end) == []
+    end
   end
 end
